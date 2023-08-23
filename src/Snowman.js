@@ -73,12 +73,24 @@ function Snowman({
     ));
   }
 
+  //maxWrongGuess < 6 && element ? loseMessage : generateButtons();
+  //loseMessage = maxWrongGuess < 6
+
   return (
       <div className="Snowman">
         <img src={(images)[nWrong]} alt={nWrong} />
         <p className="Snowman-wrong">Number wrong: { nWrong }</p>
         <p className="Snowman-word">{guessedWord()}</p>
-        <p className="Snowman-buttons">{generateButtons()}</p>
+        { nWrong >= maxWrong &&
+          <p className="Snowman-lose-message">
+            {`You Lose! The correct word is: ${answer}`}
+          </p>
+        }
+        { nWrong < maxWrong &&
+          <p className="Snowman-buttons">
+            {generateButtons()}
+          </p>
+        }
       </div>
   );
 }
